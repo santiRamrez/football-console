@@ -1,3 +1,4 @@
+from re import A
 from arbitro import Arbitro;
 from jugador import Jugador;
 
@@ -35,36 +36,40 @@ class Partido:
 
     def getListEq2(self):
        return self.__listEq2
-
+  
     def asignarArbitro(self, rut, nombre, antiguedad):
       a = Arbitro(rut, nombre, antiguedad)
       self.__referi = a
       return f'Arbitro {nombre} agregado exitosamente'
+    
+    def pickList(self, li1, li2, equipo):
+      if len(li1) > 0:
+          eq1 = li1[0].getEquipo().upper()
+          if eq1 == equipo.upper():
+            return li1 
+          else:
+            return li2
 
     def agregarJugadorPartido(self, rut, nombre, equipo, numeroCamiseta):
       jugador = Jugador(rut, nombre, equipo, numeroCamiseta)
 
-      if len(self.getListEq1()) == 0 or len(self.getListEq2()) == 0:
+      #For default, it adds to the list1 the first player
+      if len(self.getListEq1()) == 0 and len(self.getListEq2()) == 0:
         self.getListEq1().append(jugador)
-        
-      if len(self.getListEq1()) <= 13 and len(self.getListEq2()) <= 13: 
-        toCompare = self.getListEq1()[0].getEquipo().upper()
-        if equipo.upper() == toCompare: 
-          for p in self.getListEq1():
+
+      theList = self.pickList(self.getListEq1(), self.getListEq2(), equipo)
+      
+      #If there are available positions and this list is according to the team typed by the user 
+      #check if the player is not already in
+      if len(theList) < 11: 
+          for p in theList:
             if p.getRut() == jugador.getRut():
               return f'-- El jugador {jugador.getNombre()} ya existe!'
 
-          self.getListEq1().append(jugador)
+          theList.append(jugador)
           return f'El jugador {nombre} fue agregado al equipo {equipo}'
-
-        else:
-          if equipo.upper() == self.getListEq2()[0].getEquipo().upper():
-            self.getListEq2().append(jugador)
-            return f'El jugador {nombre} fue agregado al equipo {equipo}'
-
-      else: 
-        return False
-        
+      else:
+        return f'Está completo el equipo compadre :('
       
     def eliminarJugadorPartido(self, rut, equipo):
       list1 = self.getListEq1()
@@ -98,8 +103,8 @@ class Partido:
             print(list1[j])
 
         if len(list2) > 0:
-          print(f'-- Jugadores del Equipo {list2[0].getEquipo().upper()} --')
+          print(f'\n-- Jugadores del Equipo {list2[0].getEquipo().upper()} --')
           for k in range(0, len(list2), 1):
             print(list2[k])
 
-        
+

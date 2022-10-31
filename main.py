@@ -61,13 +61,13 @@ def validaOpcion():
 
 # Menu
 def menu():
-    print("Menú principal")
+    print(f"\nMenú principal")
     print("1 Registrar Partido")
     print("2 Asignar Arbitro")
     print("3 Agregar Jugador")
     print("4 Eliminar Jugador")
     print("5 Listar Jugadores por Equipos")
-    print("6 Salir")
+    print("6 Salir\n")
 
 # Run the program
 game = ""
@@ -107,7 +107,8 @@ while True:
         print(game.eliminarJugadorPartido(rut, equipo)) 
     
     elif op == 5: #Listar jugadores por equipo
-      game.desplegarJugadores()
+      if start:
+        game.desplegarJugadores()
     
   
 
