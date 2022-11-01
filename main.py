@@ -102,13 +102,12 @@ while True:
     elif op == 4: #Eliminar Jugador --> rut, equipo
         print('-- Ingrese Rut Del Jugador --')
         rut = validaDni()
-        print('-- Ingrese Equipo del Jugador --')
-        equipo = validaNombre()
+        equipo = validaNombre('Nombre del Equipo')
         print(game.eliminarJugadorPartido(rut, equipo)) 
     
     elif op == 5: #Listar jugadores por equipo
       if start:
-        game.desplegarJugadores()
+        print(game.desplegarJugadores())
     
   
 

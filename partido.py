@@ -56,18 +56,20 @@ class Partido:
       #For default, it adds to the list1 the first player
       if len(self.getListEq1()) == 0 and len(self.getListEq2()) == 0:
         self.getListEq1().append(jugador)
+        return f'El jugador {nombre} fue agregado al equipo {equipo}'
 
       theList = self.pickList(self.getListEq1(), self.getListEq2(), equipo)
       
       #If there are available positions and this list is according to the team typed by the user 
       #check if the player is not already in
       if len(theList) < 11: 
-          for p in theList:
+        for p in theList:
             if p.getRut() == jugador.getRut():
-              return f'-- El jugador {jugador.getNombre()} ya existe!'
+              print(theList)
+              return f'-- El jugador {jugador.getNombre()} ya está en la lista! --'
 
-          theList.append(jugador)
-          return f'El jugador {nombre} fue agregado al equipo {equipo}'
+        theList.append(jugador)
+        return f'El jugador {nombre} fue agregado al equipo {equipo}'
       else:
         return f'Está completo el equipo compadre :('
       
@@ -87,7 +89,7 @@ class Partido:
             list2.pop(k)
             return f'Jugador rut: {rut} fue borrado exitosamente'
         
-        return False
+      return False
 
       
     def desplegarJugadores(self):
@@ -106,5 +108,6 @@ class Partido:
           print(f'\n-- Jugadores del Equipo {list2[0].getEquipo().upper()} --')
           for k in range(0, len(list2), 1):
             print(list2[k])
-
+      
+      return '\n-- End of the List --'
 
