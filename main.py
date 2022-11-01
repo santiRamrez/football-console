@@ -94,7 +94,7 @@ while True:
         nombre = validaNombre('nombre jugador')
         equipo = validaNombre('nombre equipo')
         numero = validaNumero('numero camiseta')
-        print(game.agregarJugadorPartido(dni, nombre, equipo, numero)) if game.agregarJugadorPartido(dni, nombre, equipo, numero) else print('-- Los equipos están completos --')
+        print(game.agregarJugadorPartido(dni, nombre, equipo, numero)) 
       else:
         print('-- Por favor inicie un partido primero --')
 

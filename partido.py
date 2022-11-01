@@ -1,4 +1,3 @@
-from re import A
 from arbitro import Arbitro;
 from jugador import Jugador;
 
@@ -111,3 +110,10 @@ class Partido:
       
       return '\n-- End of the List --'
 
+# game = Partido(1, 'SANTIAGO BERNABEU', 'PEPE RIZO')
+# print(game.agregarJugadorPartido('25.489.962-3', 'SANTIAGO RAMIREZ', 'REAL MADRID', 10))
+# print(game.agregarJugadorPartido('12.489.962-3', 'karin benzema', 'REAL MADRID', 9))
+# print(game.agregarJugadorPartido('15.325.962-3', 'LEONEL MESSI', 'FC BARCELONA', 10))
+# print(game.agregarJugadorPartido('11.123.456-7', 'CHARLES PUYOL', 'FC BARCELONA', 3))
+
+# print(game.desplegarJugadores())
